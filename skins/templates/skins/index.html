@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'skins/style.css' %}">
+    <title>API-Daten</title>
+</head>
+
+<body>
+    <h1>API-Daten</h1>
+
+    {% if data %}
+    <ul>
+        {% for item in data %} <!-- Greife auf die Liste von Daten zu -->
+        <li>
+            <strong>{{ item.market_hash_name }}</strong> - Preis: {{ item.suggested_price }} {{ item.currency }}<br>
+            <a href="{{ item.item_page }}">Zur Item-Seite</a> | <a href="{{ item.market_page }}">Zur Markt-Seite</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Keine Daten verfügbar.</p>
+    {% endif %}
+</body>
+
+</html>
