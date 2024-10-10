@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="de">
 
@@ -11,6 +12,7 @@
 </head>
 
 <body>
+
     <header>
         <div>Logo</div>
         <div>skinchecker</div>
@@ -21,18 +23,32 @@
             <a href="#">Browse Skins</a>
         </div>
     </header>
-    {% if data %}
-    <ul>
-        {% for item in data %}
-        <li>
-            <strong>{{ item.name }}</strong> - Price: {{ item.suggested_price }} EUR<br>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No data available.</p>
-    {% endif %}
 
+    <section class="item-container">
+        {% if data %}
+        {% for item in data %}
+        <div class="single-item">
+            <div>
+                <strong> {{ item.name }}</strong>
+            </div>
+            <div class="price-container">
+                <strong>Price</strong> {{ item.suggested_price|format_price_in_euro }} EUR
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No data available.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <div>Logo</div>
+        <div>skinchecker</div>
+        <div class="footer-socials">
+            <a href="https://github.com/PascalNehlsen/skinchecker" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/pascal-nehlsen/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
 </body>
 
 </html>

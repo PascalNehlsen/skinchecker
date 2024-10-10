@@ -15,17 +15,19 @@ def home(request):
             response = json.loads(res.text)
             print("Status Code:", res.status_code)
             if res.status_code == 200:
-
                 if isinstance(response, dict) and 'data' in response:
                     data = response['data']['skins']
                 else:
                     data = response if isinstance(response, list) else []
                 
+                # Setze die Daten in den Cache für 300 Sekunden
                 cache.set(cache_key, data, timeout=300)
             else:
                 data = [] 
         except requests.RequestException as e:
             print("Error during API request:", e)
             data = []
-
-    return render(request, 'skins/index.html', {'data': data})
+    
+    limited_data = data[:50] 
+    
+    return render(request, 'skins/index.html', {'data': limited_data})

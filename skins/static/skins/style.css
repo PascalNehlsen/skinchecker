@@ -1,9 +1,11 @@
 /* skins/static/skins/style.css */
+
 body {
   font-family: Arial, sans-serif;
-  background-color: grey;
-  color: #333;
-  text-align: center;
+  background-color: rgb(5, 5, 65);
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 header {
@@ -13,7 +15,8 @@ header {
   height: 100px;
   padding-left: 50px;
   padding-right: 50px;
-  border-color: 1px solid green;
+  border-bottom: 1px solid rgb(0, 255, 0);
+  margin-bottom: 20px;
 }
 
 .header-menu {
@@ -21,9 +24,67 @@ header {
   gap: 10px;
   > a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
   }
   > a:hover {
-    color: #1d1d1d;
+    color: #d8d7d7;
+  }
+}
+
+.item-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  flex-wrap: wrap;
+}
+
+.single-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  height: 200px;
+  width: 140px;
+  border: 1px solid rgb(0, 255, 0);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(0, 255, 0);
+  height: 100px;
+  margin-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  align-items: center;
+
+  > div {
+    width: 100px;
+    text-align: center;
+  }
+}
+
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  > a {
+    text-decoration: none;
+    color: #fff;
+  }
+  > a:hover {
+    color: #d8d7d7;
   }
 }
