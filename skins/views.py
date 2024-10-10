@@ -6,7 +6,6 @@ import json
 
 def home(request):
     cache_key = 'bitskins_data'
-    # Versuch, die Daten aus dem Cache abzurufen
     data = cache.get(cache_key)
     
     if not data:
