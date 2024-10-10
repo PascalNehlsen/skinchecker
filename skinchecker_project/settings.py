@@ -132,3 +132,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'skins', 'static')]  # Pfad zu statis
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-skinport-api-cache',
+    }
+}

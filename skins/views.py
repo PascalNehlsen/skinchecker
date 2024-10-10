@@ -1,22 +1,32 @@
 import requests
+from django.core.cache import cache
 from django.shortcuts import render
-from django.conf import settings  # Django-Einstellungen importieren
-
+from django.conf import settings 
+import json
 
 def home(request):
-    # Beispiel-API-URL und API-Key (bitte entsprechend anpassen)
-    api_url = settings.API_URL # Ersetze dies durch deine API-URL
-    api_key = settings.API_KEY  # Ersetze dies durch deinen API-Key
+    cache_key = 'bitskins_data'
+    # Versuch, die Daten aus dem Cache abzurufen
+    data = cache.get(cache_key)
     
-   # Anfrage an die API
-    response = requests.get(api_url, headers={"Authorization": f"Bearer {api_key}"})
+    if not data:
+        headers = {'x-apikey': settings.API_KEY}
+        try:
+            res = requests.get(settings.API_URL, headers=headers)
+            response = json.loads(res.text)
+            print("Status Code:", res.status_code)
+            if res.status_code == 200:
 
-    print("Status Code:", response.status_code)
+                if isinstance(response, dict) and 'data' in response:
+                    data = response['data']['skins']
+                else:
+                    data = response if isinstance(response, list) else []
+                
+                cache.set(cache_key, data, timeout=300)
+            else:
+                data = [] 
+        except requests.RequestException as e:
+            print("Error during API request:", e)
+            data = []
 
-    try:
-        data = response.json()  # Hole die JSON-Daten
-    except ValueError as e:
-        print("JSON Decode Error:", e)
-        data = []
-
-    return render(request, 'skins/index.html', {'data': data})  # Übergebe data als Liste
+    return render(request, 'skins/index.html', {'data': data})

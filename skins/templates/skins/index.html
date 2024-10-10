@@ -6,24 +6,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'skins/style.css' %}">
-    <title>API-Daten</title>
+    <title>skinchecker</title>
+    <link rel="icon" href="./../../static/skins/images/favicon.ico">
 </head>
 
 <body>
-    <h1>API-Daten</h1>
-
+    <header>
+        <div>Logo</div>
+        <div>skinchecker</div>
+        <div class="header-menu">
+            <a href="#">Home</a> |
+            <a href="#">Check skins</a> |
+            <a href="#">My skins</a> |
+            <a href="#">Browse Skins</a>
+        </div>
+    </header>
     {% if data %}
     <ul>
-        {% for item in data %} <!-- Greife auf die Liste von Daten zu -->
+        {% for item in data %}
         <li>
-            <strong>{{ item.market_hash_name }}</strong> - Preis: {{ item.suggested_price }} {{ item.currency }}<br>
-            <a href="{{ item.item_page }}">Zur Item-Seite</a> | <a href="{{ item.market_page }}">Zur Markt-Seite</a>
+            <strong>{{ item.name }}</strong> - Price: {{ item.suggested_price }} EUR<br>
+            <a href="https://bitskins.com/item/cs2/{{ item.id }}">View on Bitskins</a>
         </li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>Keine Daten verfügbar.</p>
+    <p>No data available.</p>
     {% endif %}
+
 </body>
 
 </html>

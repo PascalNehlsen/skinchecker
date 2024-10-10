@@ -1,7 +1,29 @@
 /* skins/static/skins/style.css */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: grey;
   color: #333;
   text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-color: 1px solid green;
+}
+
+.header-menu {
+  display: flex;
+  gap: 10px;
+  > a {
+    text-decoration: none;
+    color: #333;
+  }
+  > a:hover {
+    color: #1d1d1d;
+  }
 }
