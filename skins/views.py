@@ -20,7 +20,6 @@ def home(request):
                 else:
                     data = response if isinstance(response, list) else []
                 
-                # Setze die Daten in den Cache für 300 Sekunden
                 cache.set(cache_key, data, timeout=300)
             else:
                 data = [] 

@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('skins.urls')),  # Fügt die URLs der 'skins' App hinzu
+    path('', include('skins.urls')),
 ]
